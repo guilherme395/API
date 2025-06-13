@@ -1,8 +1,7 @@
-version: "3.8"
+version: '3.8'
 
 services:
   mainapi:
-    build: .
     image: main-api:latest
     deploy:
       replicas: 1
