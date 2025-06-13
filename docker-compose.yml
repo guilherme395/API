@@ -1,16 +1,18 @@
 version: '3.8'
 
 services:
-  mainapi:
-    image: main-api:latest
+  ${SERVICE_NAME}:
+    image: ${IMAGE_NAME}:latest
+
     deploy:
       replicas: 1
       labels:
         - traefik.enable=true
-        - traefik.http.routers.mainapi.rule=Host(`main-api.icodenew.com.br`)
-        - traefik.http.routers.mainapi.entrypoints=websecure
-        - traefik.http.routers.mainapi.tls.certresolver=letsencryptresolver
-        - traefik.http.services.mainapi.loadbalancer.server.port=3000
+        - traefik.http.routers.${SERVICE_NAME}.rule=Host(`${DOMAIN_NAME}`)
+        - traefik.http.routers.${SERVICE_NAME}.entrypoints=websecure
+        - traefik.http.routers.${SERVICE_NAME}.tls.certresolver=letsencryptresolver
+        - traefik.http.services.${SERVICE_NAME}.loadbalancer.server.port=${INTERNAL_PORT}
+
     networks:
       - IcodeNet
 
